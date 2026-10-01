@@ -5,20 +5,20 @@
 class Aegis < Formula
   desc ""
   homepage "https://github.com/lucasloureiror/AegisPass"
-  version "2.0.0"
+  version "2.1.0"
 
   on_macos do
-    if Hardware::CPU.intel?
-      url "https://github.com/lucasloureiror/AegisPass/releases/download/v2.0.0/AegisPass_Darwin_x86_64.tar.gz"
-      sha256 "f750e218b610aebea6c38810a0f630d22cdb25d45e60534a5829bc5775551799"
+    on_intel do
+      url "https://github.com/lucasloureiror/AegisPass/releases/download/v2.1.0/AegisPass_Darwin_x86_64.tar.gz"
+      sha256 "b4015a0faa4d28abeb8209db3b593f2e15c305f1eda16a2ed0ef271ba79aca77"
 
       def install
         bin.install "aegis"
       end
     end
-    if Hardware::CPU.arm?
-      url "https://github.com/lucasloureiror/AegisPass/releases/download/v2.0.0/AegisPass_Darwin_arm64.tar.gz"
-      sha256 "88c0f55dcfc800f18ef3d212da2b3fcb66088a9e12b84b6d5d4b8e03f1d92b86"
+    on_arm do
+      url "https://github.com/lucasloureiror/AegisPass/releases/download/v2.1.0/AegisPass_Darwin_arm64.tar.gz"
+      sha256 "666350b5d476a4144fac280d8c9341acd9c077d6441378b8bec4902cf3e74db4"
 
       def install
         bin.install "aegis"
@@ -27,20 +27,24 @@ class Aegis < Formula
   end
 
   on_linux do
-    if Hardware::CPU.intel?
-      url "https://github.com/lucasloureiror/AegisPass/releases/download/v2.0.0/AegisPass_Linux_x86_64.tar.gz"
-      sha256 "d8cb94256dad20ea7bca3c2a6927151fa6d79ad293b880ad909e7bed812bf86b"
+    on_intel do
+      if Hardware::CPU.is_64_bit?
+        url "https://github.com/lucasloureiror/AegisPass/releases/download/v2.1.0/AegisPass_Linux_x86_64.tar.gz"
+        sha256 "fb86ecff1133a20316b064703c4d652ad71804ff63c438becefaf9ad546a8bfb"
 
-      def install
-        bin.install "aegis"
+        def install
+          bin.install "aegis"
+        end
       end
     end
-    if Hardware::CPU.arm? && Hardware::CPU.is_64_bit?
-      url "https://github.com/lucasloureiror/AegisPass/releases/download/v2.0.0/AegisPass_Linux_arm64.tar.gz"
-      sha256 "a6acb37929eca31db52bc2ab59535eda9539eb251571445b975835411e3847d5"
+    on_arm do
+      if Hardware::CPU.is_64_bit?
+        url "https://github.com/lucasloureiror/AegisPass/releases/download/v2.1.0/AegisPass_Linux_arm64.tar.gz"
+        sha256 "d0191659ba637e1012d8e05ec1b278fa104e2219f9dc5d2e507274abcc1b879b"
 
-      def install
-        bin.install "aegis"
+        def install
+          bin.install "aegis"
+        end
       end
     end
   end
